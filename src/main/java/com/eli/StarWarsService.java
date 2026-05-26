@@ -12,6 +12,8 @@ import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
 @RegisterRestClient(baseUri = "https://swapi.info/api/")
 public interface StarWarsService {
 
+    public final String MSG_ERROR = "Fallback";
+
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("starships")
@@ -25,7 +27,7 @@ public interface StarWarsService {
     )
     public String getStarships();
     default String getStarshipsFallback(){
-        return "Fallback";
+        return MSG_ERROR;
     };
 }
 
