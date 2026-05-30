@@ -20,6 +20,12 @@ abstract class HttpTestSupport {
         return send(HttpRequest.newBuilder(uri).GET());
     }
 
+    protected HttpResponse<String> get(URI uri, String bearerToken) throws IOException, InterruptedException {
+        return send(HttpRequest.newBuilder(uri)
+                .header("Authorization", "Bearer " + bearerToken)
+                .GET());
+    }
+
     protected HttpResponse<String> post(URI uri, String body, String contentType) throws IOException, InterruptedException {
         return send(HttpRequest.newBuilder(uri)
                 .header("Content-Type", contentType)
